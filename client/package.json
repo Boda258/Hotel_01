@@ -21,6 +21,7 @@
   "scripts": {
     "postinstall": "npm rebuild",
     "start": "react-scripts start",
+    "build": "npm install --verbose && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
