@@ -1,23 +1,29 @@
-# Use an official Node runtime as a base image
-FROM node:14 as build-stage
+# Use an official Node runtime as a parent image
+FROM node:23.0.0
 
-# Set the working directory
-WORKDIR /app
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Copy only the package.json and package-lock.json to leverage Docker cache
 COPY package*.json ./
 
-# Install dependencies
+# Install any needed packages specified in package.json
 RUN npm install
 
-# Copy the current directory contents into the container
+# Copy the rest of the client's application
 COPY . .
 
-# Build the project for production
+# Build the app
 RUN npm run build
 
-# Use nginx to serve the React application
-FROM nginx:stable-alpine
-COPY --from=build-stage /app/build/ /usr/share/nginx/html
+# Install serve to run the application
+RUN npm install -g serve
+
+# Define environment variable
+ENV PORT 80
+
+# Inform Docker that the container listens on port 80
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+
+# Run serve when the container launches
+CMD ["serve", "-s", "build", "-l", "80"]
