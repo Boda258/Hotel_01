@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'server/**'
   workflow_dispatch:
 
 jobs:
@@ -23,10 +25,14 @@ jobs:
 
       - name: npm install, build, and test
         run: |
+          cd server
           npm install
           npm run build --if-present
           npm run test --if-present
-      
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
+          
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -61,5 +67,5 @@ jobs:
         with:
           app-name: 'hotelres'
           slot-name: 'Production'
-          package: .
+          package: server
           
