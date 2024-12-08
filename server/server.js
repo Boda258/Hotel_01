@@ -19,6 +19,8 @@ app.use(cors({
 // Middleware to parse incoming JSON requests
 app.use(express.json());
 
+app.use(express.static('public')); 
+
 // Register routes
 app.use('/api/users', usersRoute);
 app.use('/api/reviews', reviewRoute);
