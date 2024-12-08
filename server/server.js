@@ -11,7 +11,7 @@ const app = express();
 
 // Enable CORS
 app.use(cors({
-  origin: 'https://hotel-01-vg16.vercel.app' 
+  origin: 'https://hotel-01-vg16-git-main-boda258s-projects.vercel.app/' 
 }));
 
 
