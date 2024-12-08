@@ -14,12 +14,12 @@ jobs:
       DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
 
     steps:
-      - uses: actions/checkout@v2  # Ensure using v2 for checkout
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'  # Using Node.js 16.x LTS
+          node-version: '20.x' 
           cache: 'npm'
 
       - name: Install dependencies and build the server
