@@ -9,6 +9,7 @@ const Hotel = require('./models/hotel'); // Import the Hotel model
 
 const app = express();
 
+app.use(bodyParser.json());
 // Enable CORS
 app.use(cors({
   origin: 'https://hotel-01-vg16-mwbwhkyb0-boda258s-projects.vercel.app/' 
@@ -22,6 +23,12 @@ app.use(express.json());
 app.use('/api/users', usersRoute);
 app.use('/api/reviews', reviewRoute);
 app.use('/api/hotels', hotelRoute);
+
+// Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error("Error:", err.stack);
+  res.status(500).json({ error: "Internal server error" });
+});
 
 // Connect to database
 connectDB().then(() => {
