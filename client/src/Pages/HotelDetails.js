@@ -11,24 +11,26 @@ function HotelDetails() {
   const [reviewText, setReviewText] = useState("");
   const { user } = useContext(UserContext);
 
+  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+
   // Memoize the fetch functions to avoid re-creating them every render
   const fetchAverageRating = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/reviews/hotel/${hotelId}/average`);
+      const response = await axios.get(`${apiUrl}/api/reviews/hotel/${hotelId}/average`);
       setAverageRating(response.data.averageRating);
     } catch (error) {
       console.error("Error fetching average rating:", error);
     }
-  }, [hotelId]);
+  }, [hotelId,apiUrl]);
 
   const fetchReviews = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/reviews/hotel/${hotelId}`);
+      const response = await axios.get(`${apiUrl}/api/reviews/hotel/${hotelId}`);
       setReviews(response.data);
     } catch (error) {
       console.error("Error fetching reviews:", error);
     }
-  }, [hotelId]);
+  }, [hotelId,apiUrl]);
 
   useEffect(() => {
     fetchAverageRating();
@@ -50,7 +52,7 @@ function HotelDetails() {
     };
 
     try {
-      await axios.post("http://localhost:8080/api/reviews/submit", review, {
+      await axios.post(`${apiUrl}/api/reviews/submit`, review, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },

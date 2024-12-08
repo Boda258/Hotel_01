@@ -33,13 +33,27 @@ function Register() {
     };
 
     try {
-      const result = await axios.post(`${process.env.REACT_APP_API_URL}/api/users/register`, user);
+      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000"; // Fallback to localhost
+      const result = await axios.post(`${apiUrl}/api/users/register`, user, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
       console.log(result.data);
       alert("Registered Successfully!");
       navigate("/login");
     } catch (error) {
-      console.log("Error during registration:", error.response ? error.response.data : error.message);
-      alert("Registration failed. Please try again.");
+      console.error("Error during registration:", error.response ? error.response.data : error.message);
+
+      // Provide specific feedback based on the backend response
+      if (error.response && error.response.status === 400) {
+        alert(error.response.data.message || "Invalid registration details.");
+      } else if (error.response && error.response.status === 500) {
+        alert("Server error. Please try again later.");
+      } else {
+        alert("Registration failed. Please check your network connection.");
+      }
     }
   }
   return (

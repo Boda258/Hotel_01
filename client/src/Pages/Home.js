@@ -11,7 +11,8 @@ function Home() {
 
   async function fetchHotels() {
     try {
-      const response = await axios.get("http://localhost:8080/api/hotels"); // Make sure the port is 8080
+      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      const response = await axios.get(`${apiUrl}/api/hotels`); 
       setHotels(response.data);
     } catch (error) {
       console.error("Error fetching hotels:", error);
