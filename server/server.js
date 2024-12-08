@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 // Enable CORS
 app.use(cors({
-  origin: 'https://hotel-01-vg16-96chwqd21-boda258s-projects.vercel.app/' 
+  origin: 'https://hotel-01-vg16.vercel.app/' 
 }));
 
 
