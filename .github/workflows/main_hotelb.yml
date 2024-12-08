@@ -14,26 +14,26 @@ jobs:
       DB_CONNECTION_STRING: ${{ secrets.DB_CONNECTION_STRING }}
 
     steps:
-      - uses: actions/checkout@v2  # Updated to v2 for better performance and reliability
+      - uses: actions/checkout@v2  # Ensure using v2 for checkout
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16.x'  # Updated Node.js version to LTS, ensuring compatibility
+          node-version: '16.x'  # Using Node.js 16.x LTS
           cache: 'npm'
 
       - name: Install dependencies and build the server
         run: |
           cd server  # Change directory to the server folder
           npm install
-          npm run build --if-present  # Ensure there is a build script
-          npm run test --if-present  # Ensure there is a test script or this will fail
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v2  # Updated to v2
+        uses: actions/upload-artifact@v3  # Updated to v3
         with:
           name: node-app
-          path: server/  # Correct path to include built files
+          path: server/  # Specify the server directory as artifact path
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,19 +44,18 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2  # Updated to v2
+        uses: actions/download-artifact@v3  # Updated to v3
         with:
           name: node-app
 
       - name: Login to Azure
-        uses: azure/login@v1  # Ensuring correct version of the login action
+        uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2  # Ensuring correct version of the deploy action
+        uses: azure/webapps-deploy@v2
         with:
           app-name: 'hotelb'
           slot-name: 'Production'
-          package: node-app  # Specify that the package is the artifact downloaded
-
+          package: .
