@@ -9,12 +9,12 @@ const Hotel = require('./models/hotel'); // Import the Hotel model
 
 const app = express();
 
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 // Enable CORS
-app.use(cors({
-  origin: 'https://hotel-01-vg16.vercel.app/' 
-}));
-
+// app.use(cors({
+//   origin: 'https://hotel-01-vg16.vercel.app/' 
+// }));
+app.use(cors());
 
 // Middleware to parse incoming JSON requests
 app.use(express.json());
