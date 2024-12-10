@@ -5,7 +5,6 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 // const router = express.Router();
 
-
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     // Route based on body content, query parameters, or custom headers
