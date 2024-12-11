@@ -5,12 +5,10 @@ function ReviewsList({ hotelId }) {
   const [reviews, setReviews] = useState([]);
   const [sortType, setSortType] = useState("recent");
 
-  const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000";
-
   useEffect(() => {
     async function fetchReviews() {
       try {
-        const result = await axios.get(`${apiUrl}/api/reviews/hotel/${hotelId}`);
+        const result = await axios.get(`http://localhost:8080/api/reviews/hotel/${hotelId}`);
         setReviews(result.data);
       } catch (error) {
         console.error("Error fetching reviews:", error);
@@ -18,7 +16,7 @@ function ReviewsList({ hotelId }) {
     }
 
     fetchReviews();
-  }, [hotelId,apiUrl]);
+  }, [hotelId]);
 
   function sortReviews() {
     const sorted = [...reviews];

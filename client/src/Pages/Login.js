@@ -11,9 +11,7 @@ function Login() {
 
   async function login() {
     try {
-      // Use environment variable for API URL
-      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000"; // Fallback to localhost
-      const result = await axios.post(`${apiUrl}/api/users/login`, {
+      const result = await axios.post("http://localhost:8080/api/users/login", {
         email,
         password,
       });

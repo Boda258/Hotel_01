@@ -1,0 +1,60 @@
+.hotel-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  display: flex;
+  margin-bottom: 20px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.hotel-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.hotel-info {
+  padding: 10px;
+  flex-grow: 1;
+}
+
+.hotel-info h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.hotel-info p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Button styles for the Link */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  font-size: 14px;
+}
+
+  

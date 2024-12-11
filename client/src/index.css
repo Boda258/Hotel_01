@@ -66,3 +66,13 @@ h2{
   font-weight: bold !important;
   text-align: center;
 }
+.navbar .form-inline {
+  display: flex;
+  align-items: center; /* Ensures vertical alignment is centered */
+}
+
+.navbar .form-inline input,
+.navbar .form-inline button {
+  margin: 0 5px; /* Adjust spacing between input and button */
+}
+

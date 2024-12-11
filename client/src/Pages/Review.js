@@ -22,8 +22,7 @@ function Review({ hotelId }) {
     };
 
     try {
-      const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5000"; // Fallback for local testing
-      await axios.post(`${apiUrl}/api/reviews/submit`, review);
+      await axios.post("http://localhost:8080/api/reviews/submit", review);
       alert("Review submitted successfully!");
       setReviewText("");
       setRating(1);

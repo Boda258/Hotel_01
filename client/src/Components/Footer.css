@@ -1,0 +1,89 @@
+
+.footer {
+  background-color: #1f1f1f; /* Dark background */
+  color: #f0f0f0; /* Light text */
+  padding: 20px 0;
+  font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 250px;
+  margin-bottom: 20px;
+}
+
+.footer-logo {
+  font-size: 24px;
+  color: #f8d210; /* Gold or accent color */
+}
+
+.footer-section h4 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #f8d210; /* Accent color for headings */
+}
+
+.footer-section p, .footer-section a {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #f0f0f0;
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: #f8d210; /* Highlight link on hover */
+}
+
+/* Quick Links List */
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 5px;
+}
+
+.footer-links li a {
+  text-decoration: none;
+  color: #f0f0f0;
+}
+
+.footer-links li a:hover {
+  text-decoration: underline;
+  color: #f8d210;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid #444; /* Subtle divider line */
+  font-size: 14px;
+  color: #aaa;
+}
+
+.footer-bottom p {
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin-bottom: 15px;
+  }
+}
